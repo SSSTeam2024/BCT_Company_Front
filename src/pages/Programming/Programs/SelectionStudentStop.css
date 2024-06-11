@@ -1,0 +1,26 @@
+/* src/components/GroupSelector.css */
+.icon-check {
+    color: green;
+    margin-left: 10px;
+    /* background: #67fd6752; */
+  }
+  
+  .icon-cross {
+    color: red;
+    margin-left: 10px;
+  }
+  
+  .selected_group{
+    padding: 7px;
+    border-radius: 7px;
+    background: rgb(230, 230, 230);
+    /* background: #06d6a0;
+    color: #fff; */
+  }
+  
+  .not_selected_group{
+    border: 1px solid #d1d1d1;
+  }
+  .icon{
+   margin-right: 5px; 
+  }

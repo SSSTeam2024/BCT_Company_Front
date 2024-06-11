@@ -1,0 +1,14 @@
+.open {
+    transform: scale(1.9); /* Par exemple, agrandissement de 50% lorsqu'ouvert */
+    z-index: 1000; /* Assurez-vous que l'image ouverte est superposée aux autres éléments */
+    position: fixed; /* Position fixe pour garder l'image en vue même en faisant défiler la page */
+    top: 50%; /* Positionnement au centre de l'écran */
+    left: 50%; /* Positionnement au centre de l'écran */
+    transform: translate(-50%, -50%); /* Positionnement au centre de l'écran */
+    cursor: pointer; /* Curseur pointer pour indiquer que l'image est cliquable */
+  }
+  .hovered {
+    transform: scale(1.05); /* Par exemple, agrandissement de 10% */
+    transition: transform 0.3s ease; /* Animation fluide de la transition */
+    cursor: pointer; /* Curseur pointer pour indiquer que l'image est cliquable */
+  }

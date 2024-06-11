@@ -1,0 +1,70 @@
+@import "./bootstrap.scss";
+@import "./icons.scss";
+@import "./app.scss";
+
+//react select
+.css-b62m3t-container {
+    .css-13cymwt-control {
+        background-color: var(--#{$prefix}secondary-bg);
+        color: var(--#{$prefix}body-color);
+        border-color: var(--#{$prefix}border-color);
+
+        &:hover,
+        &:focus {
+            border-color: var(--#{$prefix}primary);
+        }
+
+        .css-1p3m7a8-multiValue {
+            color: var(--#{$prefix}white);
+            background-color: var(--#{$prefix}primary);
+
+            .css-wsp0cs-MultiValueGeneric {
+                color: var(--#{$prefix}white);
+            }
+
+            .css-1u9des2-indicatorSeparator {
+                border-color: var(--#{$prefix}border-color);
+            }
+        }
+    }
+
+    :is(.css-qbdosj-Input, .css-1dimb5e-singleValue) {
+        color: var(--#{$prefix}body-color);
+    }
+
+    .css-t3ipsp-control {
+        background-color: var(--#{$prefix}secondary-bg);
+        color: var(--#{$prefix}body-color);
+        border-color: var(--#{$prefix}border-color);
+
+        .css-1p3m7a8-multiValue {
+            color: var(--#{$prefix}white);
+            background-color: var(--#{$prefix}primary);
+
+            .css-wsp0cs-MultiValueGeneric {
+                color: var(--#{$prefix}white);
+            }
+
+            .css-1u9des2-indicatorSeparator {
+                border-color: var(--#{$prefix}border-color);
+            }
+        }
+    }
+
+    .css-1nmdiq5-menu {
+        background-color: var(--#{$prefix}secondary-bg);
+        color: var(--#{$prefix}body-color);
+        border-color: var(--#{$prefix}border-color);
+
+        .css-d7l1ni-option {
+            color: $white;
+            background-color: var(--#{$prefix}primary);
+
+            &:hover,
+            &:active,
+            &:focus {
+                background-color: var(--#{$prefix}primary);
+            }
+        }
+    }
+}
