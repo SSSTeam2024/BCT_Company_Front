@@ -356,7 +356,7 @@ const ArchivedComplains = () => {
                             <>
                               <h5 className="card-title mb-0">
                                 <img
-                                  src={`${process.env.REACT_APP_BASE_URL}/CompanyFiles/logoFiles/${user.logo_file}`}
+                                  src={`${process.env.REACT_APP_BASE_URL}/companyFiles/logoFiles/${user.logo_file}`}
                                   alt=""
                                   className="rounded-5 avatar-sm"
                                 />{" "}
