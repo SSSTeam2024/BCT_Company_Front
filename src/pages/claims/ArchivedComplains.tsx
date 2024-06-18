@@ -281,30 +281,30 @@ const ArchivedComplains = () => {
 
   const openPdfInNewTab = (PDF: string) => {
     setSelectedPdf(PDF);
-    setPdfUrl(`${process.env.REACT_APP_BASE_URL}/complainFiles/pdf/${PDF}`);
+    setPdfUrl(`${process.env.REACT_APP_FILE_URL}/complainFiles/pdf/${PDF}`);
   };
   const openPhotoInNewTab = (PHOTO: string) => {
     setSelectedPhoto(PHOTO);
     setPhotoUrl(
-      `${process.env.REACT_APP_BASE_URL}/complainFiles/photos/${PHOTO}`
+      `${process.env.REACT_APP_FILE_URL}/complainFiles/photos/${PHOTO}`
     );
   };
   const openVideoInNewTab = (VIDEO: string) => {
     setSelectedVideo(VIDEO);
     setVideoUrl(
-      `${process.env.REACT_APP_BASE_URL}/complainFiles/videos/${VIDEO}`
+      `${process.env.REACT_APP_FILE_URL}/complainFiles/videos/${VIDEO}`
     );
   };
   const openResVideoInNewTab = (resVIDEO: string) => {
     setSelectedResVideo(resVIDEO);
     setResVideoUrl(
-      `${process.env.REACT_APP_BASE_URL}/complainFiles/resVideos/${resVIDEO}`
+      `${process.env.REACT_APP_FILE_URL}/complainFiles/resVideos/${resVIDEO}`
     );
   };
   const openResPhotoInNewTab = (resPHOTO: string) => {
     setSelectedResPhoto(resPHOTO);
     setResPhotoUrl(
-      `${process.env.REACT_APP_BASE_URL}/complainFiles/resPhotos/${resPHOTO}`
+      `${process.env.REACT_APP_FILE_URL}/complainFiles/resPhotos/${resPHOTO}`
     );
   };
 
@@ -336,7 +336,7 @@ const ArchivedComplains = () => {
                               <h5 className="card-title mb-0">
                                 <img
                                   src={`${
-                                    process.env.REACT_APP_BASE_URL
+                                    process.env.REACT_APP_FILE_URL
                                   }/employeeFiles/${complaint?.id_employee
                                     ?.photos!}`}
                                   alt=""
@@ -356,7 +356,7 @@ const ArchivedComplains = () => {
                             <>
                               <h5 className="card-title mb-0">
                                 <img
-                                  src={`${process.env.REACT_APP_BASE_URL}/companyFiles/logoFiles/${user.logo_file}`}
+                                  src={`${process.env.REACT_APP_FILE_URL}/companyFiles/logoFiles/${user.logo_file}`}
                                   alt=""
                                   className="rounded-5 avatar-sm"
                                 />{" "}

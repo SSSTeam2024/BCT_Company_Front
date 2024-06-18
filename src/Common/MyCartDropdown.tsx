@@ -84,11 +84,11 @@ const MyCartDropdown = () => {
   }, [photoUrl]);
   const openPdfInNewTab = (PDF: string) => {
     setSelectedPdf(PDF);
-    setPdfUrl(`${process.env.REACT_APP_BASE_URL}/noteFiles/pdf/${PDF}`);
+    setPdfUrl(`${process.env.REACT_APP_FILE_URL}/noteFiles/pdf/${PDF}`);
   };
   const openPhotoInNewTab = (PHOTO: string) => {
     setSelectedPhoto(PHOTO);
-    setPhotoUrl(`${process.env.REACT_APP_BASE_URL}/noteFiles/photo/${PHOTO}`);
+    setPhotoUrl(`${process.env.REACT_APP_FILE_URL}/noteFiles/photo/${PHOTO}`);
   };
 
   return (

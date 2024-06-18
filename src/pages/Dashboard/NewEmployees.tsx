@@ -36,7 +36,7 @@ const NewEmployees = () => {
                 <div className="d-flex align-items-center gap-2">
                   <div className="flex-shrink-0">
                     <img
-                      src={`${process.env.REACT_APP_BASE_URL}/employeeFiles/${item.photos}`}
+                      src={`${process.env.REACT_APP_FILE_URL}/employeeFiles/${item.photos}`}
                       alt=""
                       className="rounded dash-avatar"
                     />

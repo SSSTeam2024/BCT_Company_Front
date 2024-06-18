@@ -49,7 +49,7 @@ const Profile = (props: any) => {
                 style={{ width: "500px" }}
               >
                 <img
-                  src={`${process.env.REACT_APP_BASE_URL}/employeeFiles/${photos}`}
+                  src={`${process.env.REACT_APP_FILE_URL}/employeeFiles/${photos}`}
                   alt=""
                   className="rounded cover"
                 />
@@ -190,7 +190,7 @@ const Profile = (props: any) => {
           ></div>
           <div>
             <Document
-              file={`${process.env.REACT_APP_BASE_URL}/employeeFiles/${legalcard}`}
+              file={`${process.env.REACT_APP_FILE_URL}/employeeFiles/${legalcard}`}
               onLoadSuccess={onDocumentLoadSuccess}
             >
               <Page pageNumber={1} />

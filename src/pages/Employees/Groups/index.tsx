@@ -756,7 +756,7 @@ const Group = () => {
                         <div className="d-flex align-items-center gap-2">
                           <div className="flex-shrink-0">
                             <img
-                              src={`${process.env.REACT_APP_BASE_URL}/employeeFiles/${employee.photos}`}
+                              src={`${process.env.REACT_APP_FILE_URL}/employeeFiles/${employee.photos}`}
                               alt=""
                               className="rounded dash-avatar"
                             />
