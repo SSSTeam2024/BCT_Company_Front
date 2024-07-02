@@ -119,7 +119,7 @@ interface stopTime {
 }
 
 const AddProgramm = (props: any) => {
-  document.title = "Program | Bouden Coach Travel";
+  document.title = "New Suggested Route | Company Administration";
 
   const user = useSelector((state: RootState) => selectCurrentUser(state));
 

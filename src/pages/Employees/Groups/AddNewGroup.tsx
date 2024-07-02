@@ -8,9 +8,8 @@ import { CKEditor } from "@ckeditor/ckeditor5-react";
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 import { useAddGroupMutation } from "features/groups/groupsSlice";
 
-
 const AddNewGroup = () => {
-  document.title = "create Group | Bouden Coach Travel";
+  document.title = "Create Group | Company Administration";
 
   const [selectedFiles, setselectedFiles] = useState([]);
 
@@ -63,10 +62,8 @@ const AddNewGroup = () => {
                       </div>
                     </div>
                   </Card.Header>
-                 
-                 
-                            <Card.Body>
-                            
+
+                  <Card.Body>
                     <div className="mb-3">
                       <Form className="tablelist-form">
                         <input type="hidden" id="id-field" />
@@ -99,77 +96,73 @@ const AddNewGroup = () => {
                                 />
                               </div>
                             </Col>
-                            </Row>
-                            <Row>
-                            <Col lg={3}>
-                              <div className="mb-3">
-                                <label
-                                  htmlFor="statusSelect"
-                                  className="form-label"
-                                >
-                                Departus Station
-                                </label>
-                                <select
-                                  className="form-select text-muted"
-                                  name="choices-single-default"
-                                  id="statusSelect"
-                                  required
-                                >
-                                  <option value="">Station 1</option>
-                                  <option value="Male">Station 2</option>
-                                  <option value="Female">Station 3</option>
-                                  <option value="Other">Station 4</option>
-                                </select>
-                              </div>
-                            </Col>
-                             <Col lg={3}>
-                              <div className="mb-3">
-                                <label
-                                  htmlFor="statusSelect"
-                                  className="form-label"
-                                >
-                                Final Station
-                                </label>
-                                <select
-                                  className="form-select text-muted"
-                                  name="choices-single-default"
-                                  id="statusSelect"
-                                  required
-                                >
-                                  <option value="">Station 1</option>
-                                  <option value="Male">Station 2</option>
-                                  <option value="Female">Station 3</option>
-                                  <option value="Other">Station 4</option>
-                                </select>
-                              </div>
-                            </Col>
-                            <Col lg={3}>
-                              <div className="mb-3">
-                                <label
-                                  htmlFor="statusSelect"
-                                  className="form-label"
-                                >
-                                Mid Stations
-                                </label>
-                                <select
-                                  className="form-select text-muted"
-                                  name="choices-single-default"
-                                  id="statusSelect"
-                                  required
-                                >
-                                  <option value="">Station 1</option>
-                                  <option value="Male">Station 2</option>
-                                  <option value="Female">Station 3</option>
-                                  <option value="Other">Station 4</option>
-                                </select>
-                              </div>
-                            </Col>
-                          
-                          
-                          
-
                           </Row>
-                         
+                          <Row>
+                            <Col lg={3}>
+                              <div className="mb-3">
+                                <label
+                                  htmlFor="statusSelect"
+                                  className="form-label"
+                                >
+                                  Departus Station
+                                </label>
+                                <select
+                                  className="form-select text-muted"
+                                  name="choices-single-default"
+                                  id="statusSelect"
+                                  required
+                                >
+                                  <option value="">Station 1</option>
+                                  <option value="Male">Station 2</option>
+                                  <option value="Female">Station 3</option>
+                                  <option value="Other">Station 4</option>
+                                </select>
+                              </div>
+                            </Col>
+                            <Col lg={3}>
+                              <div className="mb-3">
+                                <label
+                                  htmlFor="statusSelect"
+                                  className="form-label"
+                                >
+                                  Final Station
+                                </label>
+                                <select
+                                  className="form-select text-muted"
+                                  name="choices-single-default"
+                                  id="statusSelect"
+                                  required
+                                >
+                                  <option value="">Station 1</option>
+                                  <option value="Male">Station 2</option>
+                                  <option value="Female">Station 3</option>
+                                  <option value="Other">Station 4</option>
+                                </select>
+                              </div>
+                            </Col>
+                            <Col lg={3}>
+                              <div className="mb-3">
+                                <label
+                                  htmlFor="statusSelect"
+                                  className="form-label"
+                                >
+                                  Mid Stations
+                                </label>
+                                <select
+                                  className="form-select text-muted"
+                                  name="choices-single-default"
+                                  id="statusSelect"
+                                  required
+                                >
+                                  <option value="">Station 1</option>
+                                  <option value="Male">Station 2</option>
+                                  <option value="Female">Station 3</option>
+                                  <option value="Other">Station 4</option>
+                                </select>
+                              </div>
+                            </Col>
+                          </Row>
+
                           {/* <Col lg={12}>
                             <Card.Header>
                               <div className="d-flex">
@@ -235,7 +228,7 @@ const AddNewGroup = () => {
                               </Row>
                             </Card.Body>
                           </Col> */}
-                         
+
                           {/* <Col lg={12}>
                             <Card.Header>
                               <div className="d-flex">

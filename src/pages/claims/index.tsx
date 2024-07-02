@@ -56,7 +56,7 @@ const Claims = () => {
       fileReader.readAsDataURL(file);
     });
   }
-  document.title = "Complains | Bouden Coach Travel";
+  document.title = "Complains | Company Administration";
 
   const user = useSelector((state: RootState) => selectCurrentUser(state));
   const { data } = useFetchComplainByCompanyQuery({ id_corporate: user?._id! });

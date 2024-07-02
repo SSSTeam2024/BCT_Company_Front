@@ -80,7 +80,6 @@
 //         }
 //     });
 
-
 //     return (
 //         <React.Fragment>
 //             <div className="page-content">
@@ -189,7 +188,7 @@ import { selectCurrentUser } from "../../features/account/authSlice";
 import { editProfile, resetProfileFlag } from "slices/thunk";
 
 const UserProfile = () => {
-  document.title = " Profile | School Administration ";
+  document.title = " Profile | Company Administration ";
 
   const user = useSelector((state: RootState) => selectCurrentUser(state));
 
@@ -268,9 +267,7 @@ const UserProfile = () => {
                       <div className="d-flex border-bottom border-bottom-dashed pb-3 mb-3 mt-4 mt-lg-0">
                         <div className="flex-grow-1">
                           <h5>{user.name}</h5>
-                          <p className="text-muted mb-0">
-                          {user.activity}
-                          </p>
+                          <p className="text-muted mb-0">{user.activity}</p>
                         </div>
                         <div className="flex-shrink-0">
                           <Dropdown>
@@ -307,7 +304,7 @@ const UserProfile = () => {
                             <Table className="table-borderless table-sm mb-0">
                               <tbody>
                                 <tr>
-                                <div className="d-flex align-item-start fw-medium">
+                                  <div className="d-flex align-item-start fw-medium">
                                     <i
                                       className="ph ph-map-pin"
                                       style={{
@@ -321,7 +318,7 @@ const UserProfile = () => {
                                 </tr>
 
                                 <tr>
-                                <div className="d-flex align-item-start fw-medium">
+                                  <div className="d-flex align-item-start fw-medium">
                                     <i
                                       className="ph ph-envelope"
                                       style={{
@@ -331,12 +328,10 @@ const UserProfile = () => {
                                     ></i>
                                     <td>Email</td>
                                   </div>
-                                  <td className="fw-medium">
-                                  {user.email}
-                                  </td>
+                                  <td className="fw-medium">{user.email}</td>
                                 </tr>
                                 <tr>
-                                <div className="d-flex align-item-start fw-medium">
+                                  <div className="d-flex align-item-start fw-medium">
                                     <i
                                       className="ph ph-phone"
                                       style={{
@@ -346,12 +341,10 @@ const UserProfile = () => {
                                     ></i>
                                     <td>Mobile / Phone No.</td>
                                   </div>
-                                  <td className="fw-medium">
-                                  {user.phone}
-                                  </td>
+                                  <td className="fw-medium">{user.phone}</td>
                                 </tr>
                                 <tr>
-                                <div className="d-flex align-item-start fw-medium">
+                                  <div className="d-flex align-item-start fw-medium">
                                     <i
                                       className="ph ph-book"
                                       style={{
@@ -361,9 +354,7 @@ const UserProfile = () => {
                                     ></i>
                                     <td>Designation</td>
                                   </div>
-                                  <td className="fw-medium">
-                                  {user.activity}
-                                  </td>
+                                  <td className="fw-medium">{user.activity}</td>
                                 </tr>
                               </tbody>
                             </Table>
@@ -373,9 +364,8 @@ const UserProfile = () => {
                           <div className="table-responsive">
                             <Table className="table-borderless table-sm mb-0">
                               <tbody>
-                              
                                 <tr>
-                                <div className="d-flex align-item-start fw-medium">
+                                  <div className="d-flex align-item-start fw-medium">
                                     <i
                                       className="ph ph-bank"
                                       style={{
@@ -385,10 +375,13 @@ const UserProfile = () => {
                                     ></i>
                                     <td>Bank Name</td>
                                   </div>
-                                  <td className="fw-medium"> {user.bank_name}</td>
+                                  <td className="fw-medium">
+                                    {" "}
+                                    {user.bank_name}
+                                  </td>
                                 </tr>
                                 <tr>
-                                <div className="d-flex align-item-start fw-medium">
+                                  <div className="d-flex align-item-start fw-medium">
                                     <i
                                       className="ph ph-user-list"
                                       style={{
@@ -398,10 +391,13 @@ const UserProfile = () => {
                                     ></i>
                                     <td>Account Name</td>
                                   </div>
-                                  <td className="fw-medium"> {user.account_name}</td>
+                                  <td className="fw-medium">
+                                    {" "}
+                                    {user.account_name}
+                                  </td>
                                 </tr>
                                 <tr>
-                                <div className="d-flex align-item-start fw-medium">
+                                  <div className="d-flex align-item-start fw-medium">
                                     <i
                                       className="ph ph-credit-card"
                                       style={{
@@ -411,10 +407,13 @@ const UserProfile = () => {
                                     ></i>
                                     <td>Account Number</td>
                                   </div>
-                                  <td className="fw-medium"> {user.account_number}</td>
+                                  <td className="fw-medium">
+                                    {" "}
+                                    {user.account_number}
+                                  </td>
                                 </tr>
                                 <tr>
-                                <div className="d-flex align-item-start fw-medium">
+                                  <div className="d-flex align-item-start fw-medium">
                                     <i
                                       className="ph ph-receipt"
                                       style={{
@@ -424,7 +423,10 @@ const UserProfile = () => {
                                     ></i>
                                     <td>Sort Code</td>
                                   </div>
-                                  <td className="fw-medium"> {user.sort_code}</td>
+                                  <td className="fw-medium">
+                                    {" "}
+                                    {user.sort_code}
+                                  </td>
                                 </tr>
                               </tbody>
                             </Table>

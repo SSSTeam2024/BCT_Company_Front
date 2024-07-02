@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useState } from "react";
 import {
   Button,
   Card,
@@ -9,25 +9,18 @@ import {
   Image,
   Row,
 } from "react-bootstrap";
-import Breadcrumb from "Common/BreadCrumb";
-import { Link, useNavigate } from "react-router-dom";
-import Flatpickr from "react-flatpickr";
-import Dropzone from "react-dropzone";
-import { CKEditor } from "@ckeditor/ckeditor5-react";
-import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
+import { useNavigate } from "react-router-dom";
 import SimpleBar from "simplebar-react";
 import country from "Common/country";
 import Swal from "sweetalert2";
 import { useAddEmployeeMutation } from "features/employees/employeesSlice";
-import flatpickr from "flatpickr";
-import "flatpickr/dist/flatpickr.min.css";
 import { useFetchGroupQuery } from "features/groups/groupsSlice";
 import { useSelector } from "react-redux";
-import { RootState } from '../../../app/store'; // Import your RootState interface
-import { selectCurrentUser } from '../../../features/account/authSlice'; 
+import { RootState } from "../../../app/store"; // Import your RootState interface
+import { selectCurrentUser } from "../../../features/account/authSlice";
 
 const AddNewAccount = () => {
-  document.title = "create Account | Bouden Coach Travel";
+  document.title = "Create Account | Company Administration";
   const navigate = useNavigate();
   const [selectedFiles, setselectedFiles] = useState([]);
   // Mutation to create account
@@ -52,11 +45,11 @@ const AddNewAccount = () => {
     dateOfBirth: "",
     legalcard: "",
     username: "",
-    groupId:{
-      _id:null,
-      groupName:" ",
+    groupId: {
+      _id: null,
+      groupName: " ",
     },
-    groupJoiningDate:"",
+    groupJoiningDate: "",
     login: "",
     password: "",
     photosBase64String: "",

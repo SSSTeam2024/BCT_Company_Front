@@ -25,7 +25,7 @@ import { RootState } from "../../../app/store"; // Import your RootState interfa
 import { selectCurrentUser } from "../../../features/account/authSlice";
 
 const Account = () => {
-  document.title = "Account | Bouden Coach Travel";
+  document.title = "Account | Company Administration";
 
   const user = useSelector((state: RootState) => selectCurrentUser(state));
   const { data } = useFetchEmployeeByCompanyQuery({ idCompany: user?._id! });

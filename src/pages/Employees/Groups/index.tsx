@@ -68,7 +68,7 @@ interface Employee {
   status: string;
 }
 const Group = () => {
-  document.title = "Group | Bouden Coach Travel";
+  document.title = "Group | Company Administration";
   const navigate = useNavigate();
   const user = useSelector((state: RootState) => selectCurrentUser(state));
 

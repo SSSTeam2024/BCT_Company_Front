@@ -7,7 +7,7 @@ import Flatpickr from "react-flatpickr";
 import offerbanner from "../../assets/images/ecommerce/offer-banner.jpg";
 
 const Payement = () => {
-  document.title = "Payement | School Administration";
+  document.title = "Payement | Company Administration";
   const [showCoupons, setShowCoupons] = useState<boolean>(false);
   const [showCouponDetails, setShowCouponsDetails] = useState<any>({});
 
@@ -120,21 +120,21 @@ const Payement = () => {
       status: "Paid",
     },
     {
-    invoiceId: "02",
-    contractId: "VLZ-453",
-    offerId: "VLZ1400087425",
-    extratripId: "VLZ140757577",
-    editionDate: "Jan 24 2023",
-    dueDate: " Jan 30   2023 ",
+      invoiceId: "02",
+      contractId: "VLZ-453",
+      offerId: "VLZ1400087425",
+      extratripId: "VLZ140757577",
+      editionDate: "Jan 24 2023",
+      dueDate: " Jan 30   2023 ",
       status: "Paid",
     },
     {
-        invoiceId: "03",
-        contractId: "VLZ-454",
-        offerId: "VLZ140006544",
-        extratripId: "VLZ140757578",
-        editionDate: "Feb 01 2023",
-        dueDate: "Feb 28 2023",
+      invoiceId: "03",
+      contractId: "VLZ-454",
+      offerId: "VLZ140006544",
+      extratripId: "VLZ140757578",
+      editionDate: "Feb 01 2023",
+      dueDate: "Feb 28 2023",
       status: "UnPaid",
     },
   ];

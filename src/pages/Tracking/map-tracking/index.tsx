@@ -35,7 +35,7 @@ import axios from "axios";
 
 const LoadingContainer = () => <div>Loading...</div>;
 const Maptracking = (props: any) => {
-  document.title = "Tracking | Bouden Coach Travel";
+  document.title = "Tracking | Company Administration";
   const user = useSelector((state: RootState) => selectCurrentUser(state));
   console.log("user id", user._id);
 

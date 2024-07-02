@@ -70,13 +70,10 @@ interface Employee {
   groupJoiningDate: string | null;
 }
 const ProgramGroups = () => {
-  document.title = "Group | School Administration";
+  document.title = "Group | Company Administration";
   const navigate = useNavigate();
   const user: any = useSelector((state: RootState) => selectCurrentUser(state));
-  console.log("user", user);
   const location = useLocation();
-
-  console.log("location", location);
 
   const [modal_AddShippingModals, setmodal_AddShippingModals] =
     useState<boolean>(false);
@@ -110,8 +107,6 @@ const ProgramGroups = () => {
 
   const { data = [] } = useFetchGroupEmployeeByIdGroupQuery(String(progId));
 
-  console.log("Hard coded", data);
-
   const [deleteGroup] = useDeleteGroupMutation();
   const [deleteEmployee] = useRemoveEmployeeFromGroupMutation();
   const [createGroup] = useAddGroupMutation();
@@ -121,7 +116,6 @@ const ProgramGroups = () => {
   // console.log("Groups",groups,);
 
   const filtered = employees.filter((employees) => employees.groupId === null);
-  console.log("filter1", filtered);
 
   // useEffect(() => {
   //   const filtered = employees.filter((employees) => employees.groupId === null);
@@ -140,7 +134,7 @@ const ProgramGroups = () => {
 
     setSelectedValues(newColors);
   };
-  console.log("filter", selectedValues);
+
   const selectChangeProgram = (event: React.ChangeEvent<HTMLSelectElement>) => {
     const value = event.target.value;
     setSelectedProgram(value);

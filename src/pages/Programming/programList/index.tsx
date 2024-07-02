@@ -38,7 +38,7 @@ interface ResponseStatus {
 }
 
 const ProgramList = () => {
-  document.title = "List of Programs | Company Administration";
+  document.title = "Suggested Routes | Company Administration";
   const user = useSelector((state: RootState) => selectCurrentUser(state));
   const [modal_Pickup, setmodal_Pickup] = useState<boolean>(false);
   const [modal_Destination, setmodal_Destination] = useState<boolean>(false);
@@ -201,16 +201,12 @@ const ProgramList = () => {
                 penultimateStatus === "Approved By Admin") ||
               (penultimateStatus === "Approved By Client" &&
                 latestStatus === "Approved By Admin") ? (
-              <Link
-                to="#"
-                className="badge badge-soft-success text-uppercase"
-                onClick={() => AlertConfirm(row?._id!)}
-              >
-                Convert To Contract
-              </Link>
+              <span className="badge bg-secondary-subtle text-dark">
+                Contract Pending
+              </span>
             ) : latestStatus === "Pending" ? (
-              <span className="badge bg-danger-subtle text-danger">
-                Pending
+              <span className="badge bg-warning-subtle text-warning">
+                Answer Pending
               </span>
             ) : latestStatus === "Answered By Client" ? (
               <span className="badge bg-secondary-subtle text-dark">
@@ -302,29 +298,6 @@ const ProgramList = () => {
           <ul className="hstack gap-2 list-unstyled mb-0">
             <li>
               <Link
-                to={"/programgroups"}
-                className="badge badge-soft-success edit-item-btn"
-                state={row}
-                onClick={() => localStorage.setItem("id_current_prog", row._id)}
-              >
-                <i
-                  className="ph ph-users-three"
-                  style={{
-                    transition: "transform 0.3s ease-in-out",
-                    cursor: "pointer",
-                    fontSize: "1.5em",
-                  }}
-                  onMouseEnter={(e) =>
-                    (e.currentTarget.style.transform = "scale(1.2)")
-                  }
-                  onMouseLeave={(e) =>
-                    (e.currentTarget.style.transform = "scale(1)")
-                  }
-                ></i>
-              </Link>
-            </li>
-            <li>
-              <Link
                 to={`/programming/list-of-programs/programDetail`}
                 className="badge badge-soft-primary edit-item-btn"
                 state={row}
@@ -345,29 +318,65 @@ const ProgramList = () => {
                 ></i>
               </Link>
             </li>
-            <li>
-              <Link
-                to="#"
-                className="badge badge-soft-dark edit-item-btn"
-                state={row}
-                onClick={() => tog_Action()}
-              >
-                <i
-                  className="ph ph-paper-plane-tilt"
-                  style={{
-                    transition: "transform 0.3s ease-in-out",
-                    cursor: "pointer",
-                    fontSize: "1.5em",
-                  }}
-                  onMouseEnter={(e) =>
-                    (e.currentTarget.style.transform = "scale(1.2)")
+            {row.status !== undefined ? (
+              <li>
+                <Link
+                  to={"/programgroups"}
+                  className="badge badge-soft-success edit-item-btn"
+                  state={row}
+                  onClick={() =>
+                    localStorage.setItem("id_current_prog", row._id)
                   }
-                  onMouseLeave={(e) =>
-                    (e.currentTarget.style.transform = "scale(1)")
-                  }
-                ></i>
-              </Link>
-            </li>
+                >
+                  <i
+                    className="ph ph-users-three"
+                    style={{
+                      transition: "transform 0.3s ease-in-out",
+                      cursor: "pointer",
+                      fontSize: "1.5em",
+                    }}
+                    onMouseEnter={(e) =>
+                      (e.currentTarget.style.transform = "scale(1.2)")
+                    }
+                    onMouseLeave={(e) =>
+                      (e.currentTarget.style.transform = "scale(1)")
+                    }
+                  ></i>
+                </Link>
+              </li>
+            ) : (
+              ""
+            )}
+            {row.status !== "Converted" &&
+            row.program_status[row.program_status.length - 1].status !==
+              "Pending" ? (
+              <li>
+                <Link
+                  to="#"
+                  className="badge badge-soft-dark edit-item-btn"
+                  state={row}
+                  onClick={() => tog_Action()}
+                >
+                  <i
+                    className="ph ph-paper-plane-tilt"
+                    style={{
+                      transition: "transform 0.3s ease-in-out",
+                      cursor: "pointer",
+                      fontSize: "1.5em",
+                    }}
+                    onMouseEnter={(e) =>
+                      (e.currentTarget.style.transform = "scale(1.2)")
+                    }
+                    onMouseLeave={(e) =>
+                      (e.currentTarget.style.transform = "scale(1)")
+                    }
+                  ></i>
+                </Link>
+              </li>
+            ) : (
+              ""
+            )}
+
             <li>
               <Dropdown
                 className="topbar-head-dropdown ms-1 header-item"
@@ -403,7 +412,7 @@ const ProgramList = () => {
                 </Link>
               </Dropdown>
             </li>
-            <li>
+            {/* <li>
               <Link
                 to={`/edit-program/${row.Name}`}
                 className="badge badge-soft-success edit-item-btn"
@@ -424,29 +433,33 @@ const ProgramList = () => {
                   }
                 ></i>
               </Link>
-            </li>
-            <li>
-              <Link
-                to="#"
-                className="badge badge-soft-danger remove-item-btn"
-                onClick={() => AlertDelete(row._id)}
-              >
-                <i
-                  className="ph ph-trash"
-                  style={{
-                    transition: "transform 0.3s ease-in-out",
-                    cursor: "pointer",
-                    fontSize: "1.5em",
-                  }}
-                  onMouseEnter={(e) =>
-                    (e.currentTarget.style.transform = "scale(1.2)")
-                  }
-                  onMouseLeave={(e) =>
-                    (e.currentTarget.style.transform = "scale(1)")
-                  }
-                ></i>
-              </Link>
-            </li>
+            </li> */}
+            {row.status === "Converted" ? (
+              ""
+            ) : (
+              <li>
+                <Link
+                  to="#"
+                  className="badge badge-soft-danger remove-item-btn"
+                  onClick={() => AlertDelete(row._id)}
+                >
+                  <i
+                    className="ph ph-trash"
+                    style={{
+                      transition: "transform 0.3s ease-in-out",
+                      cursor: "pointer",
+                      fontSize: "1.5em",
+                    }}
+                    onMouseEnter={(e) =>
+                      (e.currentTarget.style.transform = "scale(1.2)")
+                    }
+                    onMouseLeave={(e) =>
+                      (e.currentTarget.style.transform = "scale(1)")
+                    }
+                  ></i>
+                </Link>
+              </li>
+            )}
           </ul>
         );
       },
@@ -595,8 +608,12 @@ const ProgramList = () => {
     try {
       sendResponse["id"] = programLocation.state?._id!;
       sendResponse["notes_for_client"] = responseMsg;
-      sendResponse["unit_price"] = quoteUnitPrice?.toFixed(2)!;
-      sendResponse["total_price"] = contractTotalPrice?.toFixed(2)!;
+      sendResponse["unit_price"] = programLocation.state?.unit_price!;
+      sendResponse["total_price"] = programLocation.state?.total_price!;
+      sendResponse["invoiceFrequency"] =
+        programLocation.state?.invoiceFrequency!;
+      sendResponse["within_payment_days"] =
+        programLocation.state?.within_payment_days!;
       let newResponseStatus: ResponseStatus = { status: "", date_status: "" };
       let prev_status: any = [];
       programLocation?.state?.program_status!.forEach((element: any) => {
@@ -623,7 +640,6 @@ const ProgramList = () => {
         prev_status.push(newResponseStatus);
       }
       sendResponse["program_status"] = prev_status;
-      sendResponse["invoiceFrequency"] = selectedInvoiceFrequency;
       handleResponseMsgSubmit();
       sendResponseMutation(sendResponse)
         .then(() => notifySuccess())
