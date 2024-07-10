@@ -1,88 +1,43 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Container, Row, Card, Col } from "react-bootstrap";
 import DataTable from "react-data-table-component";
 import Breadcrumb from "Common/BreadCrumb";
-import Flatpickr from "react-flatpickr";
-import { Link, useNavigate } from "react-router-dom";
-import Swal from "sweetalert2";
 import { useGetAllQuotesByCompanyIDQuery } from "features/quote/quoteSlice";
 import { useSelector } from "react-redux";
-import { RootState } from "app/store"; // Import your RootState interface
+import { RootState } from "app/store";
 import { selectCurrentUser } from "features/account/authSlice";
 
 const TripsManagement = () => {
-  document.title = "Trips| Company Administration";
+  document.title = "Trips | Company Administration";
   const user = useSelector((state: RootState) => selectCurrentUser(state));
-  const [showAffiliates, setShowAffiliates] = useState<boolean>(false);
 
-  const { data = [] } = useGetAllQuotesByCompanyIDQuery(user?._id!);
-  // From Date
-  // Inside your functional component
-  const [selectedFromDate, setSelectedFromDate] = useState<string>(() => {
-    // Get current date
-    const currentDate = new Date();
-    // Format it to match your dateFormat option
-    const formattedDate = currentDate.toISOString().split("T")[0];
-    // Return the formatted date as the default value
-    return formattedDate;
-  });
-
-  const handleFromDateChange = (selectedDates: Date[]) => {
-    const formattedDate = selectedDates[0].toISOString().split("T")[0];
-    setSelectedFromDate(formattedDate);
-  };
-
-  // To Date
-  // const [selectedToDate, setSelectedToDate] = useState<Date | null>(newDate);
-  const [selectedToDate, setSelectedToDate] = useState<string>(() => {
-    // Get current date
-    const currentDate = new Date();
-    // Format it to match your dateFormat option
-    currentDate.setDate(currentDate.getDate() + 15);
-    const formattedDate = currentDate.toISOString().split("T")[0];
-    // Return the formatted date as the default value
-    return formattedDate;
-  });
-  const handleToDateChange = (selectedDates: Date[]) => {
-    const formattedDate = selectedDates[0].toISOString().split("T")[0];
-    setSelectedToDate(formattedDate);
-  };
-
-  // Log selectedFromDate whenever it changes
-  useEffect(() => {
-    console.log(selectedFromDate);
-  }, [selectedFromDate]);
-
-  const [modal_QuoteInfo, setmodal_QuoteInfo] = useState<boolean>(false);
-
-  function tog_QuoteInfo() {
-    setmodal_QuoteInfo(!modal_QuoteInfo);
-  }
-
-  const [isChecked, setIsChecked] = useState<boolean>(false);
-  const [selectedRow, setSelectedRow] = useState<any>();
-
+  const { data: quotes = [] } = useGetAllQuotesByCompanyIDQuery(user?._id!);
+  const result = quotes.filter((quote) => quote.progress !== "Refused");
   const columns = [
     {
       name: <span className="font-weight-bold fs-13">Quote ID</span>,
       selector: (cell: any) => {
         return (
           <span>
-            <Link to={`/new-quote/${cell?._id!}`} state={cell}>
-              <span className="text-dark">{cell?.quote_ref!}</span>
-            </Link>{" "}
-            <i className="ph ph-eye" onClick={() => tog_QuoteInfo()}></i>
+            <span className="text-dark">{cell?.quote_ref!}</span>
           </span>
         );
       },
       sortable: true,
-      width: "220px",
+      width: "160px",
     },
     {
       name: (
         <span className="mdi mdi-account-tie-hat font-weight-bold fs-24"></span>
       ),
-      selector: (row: any) => "No Driver",
+      selector: (row: any) =>
+        row?.id_driver?.firstname! === undefined ? (
+          <span>No Driver</span>
+        ) : (
+          <span>
+            {row?.id_driver?.firstname!} {row?.id_driver?.surname!}
+          </span>
+        ),
       sortable: true,
       // width: "88px",
     },
@@ -90,13 +45,18 @@ const TripsManagement = () => {
       name: <span className="font-weight-bold fs-13">Vehicle Type</span>,
       selector: (row: any) => row.vehicle_type,
       sortable: true,
-      // width: "160px",
+      width: "220px",
     },
     {
       name: <span className="mdi mdi-car font-weight-bold fs-24"></span>,
-      selector: (row: any) => "No Vehicle",
+      selector: (row: any) =>
+        row.id_vehicle?.registration_number! === undefined ? (
+          <span>No Vehicle</span>
+        ) : (
+          <span>{row.id_vehicle?.registration_number!}</span>
+        ),
       sortable: true,
-      width: "95px",
+      width: "100px",
     },
     {
       name: <span className="font-weight-bold fs-13">Date</span>,
@@ -130,31 +90,61 @@ const TripsManagement = () => {
       name: <span className="font-weight-bold fs-13">Progress</span>,
       selector: (cell: any) => {
         switch (cell.progress) {
-          case "New":
-            return <span className="badge bg-danger"> {cell.progress} </span>;
+          case "Booked":
+            return <span className="badge bg-primary"> {cell.progress} </span>;
           case "Accepted":
-            return <span className="badge bg-danger"> New </span>;
-          case "Cancel":
-            return <span className="badge bg-dark"> {cell.progress} </span>;
-          case "Created":
+            return <span className="badge bg-warning"> {cell.progress} </span>;
+          case "On Route":
             return <span className="badge bg-info"> {cell.progress} </span>;
+          case "Picked Up":
+            return (
+              <span className="badge bg-secondary"> {cell.progress} </span>
+            );
           default:
             return <span className="badge bg-danger"> {cell.progress} </span>;
         }
       },
       sortable: true,
-      width: "88px",
+      width: "100px",
     },
     {
       name: <span className="font-weight-bold fs-13">Status</span>,
-      selector: (row: any) => <span className="badge bg-danger"> New </span>,
+      selector: (cell: any) => {
+        switch (cell.status) {
+          case "Booked":
+            return <span className="badge bg-primary"> {cell.status} </span>;
+          case "Allocated":
+            return (
+              <span className="badge bg-warning-subtle text-warning">
+                {" "}
+                {cell.status}{" "}
+              </span>
+            );
+          case "Driver Allocated":
+            return (
+              <span className="badge bg-info-subtle text-info">
+                {" "}
+                {cell.status}{" "}
+              </span>
+            );
+          case "Vehicle Allocated":
+            return (
+              <span className="badge bg-secondary-subtle text-secondary">
+                {" "}
+                {cell.status}{" "}
+              </span>
+            );
+          default:
+            return (
+              <span className="badge bg-dark-subtle text-dark">
+                {" "}
+                {cell.status}{" "}
+              </span>
+            );
+        }
+      },
       sortable: true,
-      width: "80px",
-    },
-    {
-      name: <span className="font-weight-bold fs-13">Passenger Name</span>,
-      selector: (row: any) => row.id_visitor?.name!,
-      sortable: true,
+      width: "130px",
     },
     {
       name: <span className="font-weight-bold fs-13">Mobile</span>,
@@ -224,19 +214,6 @@ const TripsManagement = () => {
       width: "157px",
     },
     {
-      name: <span className="font-weight-bold fs-13">Affiliate</span>,
-      selector: (row: any) => (
-        <Link
-          to="#"
-          onClick={() => setShowAffiliates(!showAffiliates)}
-          state={row}
-        >
-          {row?.white_list?.length}
-        </Link>
-      ),
-      sortable: true,
-    },
-    {
       name: <span className="font-weight-bold fs-13">Callback</span>,
       selector: (row: any) => "No Callback",
       sortable: true,
@@ -264,11 +241,6 @@ const TripsManagement = () => {
       },
     },
     {
-      name: <span className="font-weight-bold fs-13">Account Name</span>,
-      selector: (row: any) => row.id_visitor?.name!,
-      sortable: true,
-    },
-    {
       name: <span className="font-weight-bold fs-13">Notes</span>,
       selector: (row: any) => {
         return row.notes !== "" ? <span>{row.notes}</span> : "No Notes";
@@ -277,71 +249,98 @@ const TripsManagement = () => {
     },
   ];
 
-  const optionColumnsTable = [
-    { value: "Quote ID", label: "Quote ID" },
-    { value: "Go Date", label: "Go Date" },
-    { value: "Pax", label: "Pax" },
-    { value: "Group", label: "Group" },
-    { value: "Pick Up", label: "Pick Up" },
-    { value: "Destination", label: "Destination" },
-    { value: "Progress", label: "Progress" },
-    { value: "Status", label: "Status" },
-    { value: "Price", label: "Price" },
-  ];
-
-  // State to store the selected option values
-  const [selectedColumnValues, setSelectedColumnValues] = useState<any[]>([]);
-
-  // Event handler to handle changes in selected options
-  const handleSelectValueColumnChange = (selectedOption: any) => {
-    // Extract values from selected options and update state
-    const values = selectedOption.map((option: any) => option.value);
-    setSelectedColumnValues(values);
+  const [selectedPeriod, setSelectedPeriod] = useState<string>("");
+  // This function is triggered when the select Period
+  const handleSelectPeriod = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    const value = event.target.value;
+    setSelectedPeriod(value);
   };
 
-  const notifySuccess = () => {
-    Swal.fire({
-      position: "center",
-      icon: "success",
-      title: "Assign Done successfully",
-      showConfirmButton: false,
-      timer: 2500,
-    });
+  const [selectedProgress, setSelectedProgress] = useState<string>("");
+  // This function is triggered when the select Progress
+  const handleSelectProgress = (
+    event: React.ChangeEvent<HTMLSelectElement>
+  ) => {
+    const value = event.target.value;
+    setSelectedProgress(value);
   };
 
-  const notifyError = (err: any) => {
-    Swal.fire({
-      position: "center",
-      icon: "error",
-      title: `Sothing Wrong, ${err}`,
-      showConfirmButton: false,
-      timer: 2500,
-    });
+  const [searchTerm, setSearchTerm] = useState("");
+  const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchTerm(event.target.value);
   };
 
-  const navigate = useNavigate();
-  const [modal_SurveyAffiliate, setModalSurveyAffiliate] =
-    useState<boolean>(false);
-  const tog_ModalSurveyAffiliate = () => {
-    setModalSurveyAffiliate(!modal_SurveyAffiliate);
-  };
+  const getFilteredJobs = () => {
+    let filteredJobs = result;
+    if (searchTerm) {
+      filteredJobs = filteredJobs.filter(
+        (job: any) =>
+          job?.quote_ref?.toLowerCase().includes(searchTerm.toLowerCase()) ||
+          job.vehicle_type.toLowerCase().includes(searchTerm.toLowerCase()) ||
+          job.start_point.placeName
+            .toLowerCase()
+            .includes(searchTerm.toLowerCase()) ||
+          job.destination_point.placeName
+            .toLowerCase()
+            .includes(searchTerm.toLowerCase()) ||
+          job?.id_visitor?.name
+            ?.toLowerCase()
+            .includes(searchTerm.toLowerCase())
+      );
+    }
 
-  // State to store the selected option values
-  const [selectedValues, setSelectedValues] = useState<any[]>([]);
-  // Event handler to handle changes in selected options
-  const handleSelectValueChange = (selectedOption: any) => {
-    let whiteList: any[] = [];
+    if (selectedPeriod && selectedPeriod !== "all") {
+      const now = new Date();
+      const filterByDate = (jobDate: any) => {
+        const date = new Date(jobDate);
+        switch (selectedPeriod) {
+          case "Today":
+            return date.toDateString() === now.toDateString();
+          case "Yesterday":
+            const yesterday = new Date(now);
+            yesterday.setDate(now.getDate() - 1);
+            return date.toDateString() === yesterday.toDateString();
+          case "Last 7 Days":
+            const lastWeek = new Date(now);
+            lastWeek.setDate(now.getDate() - 7);
+            return date >= lastWeek && now >= date;
+          case "Last 30 Days":
+            const lastMonth = new Date(now);
+            lastMonth.setDate(now.getDate() - 30);
+            return date >= lastMonth && now >= date;
+          case "This Month":
+            return (
+              date.getMonth() === now.getMonth() &&
+              date.getFullYear() === now.getFullYear()
+            );
+          case "Last Month":
+            const lastMonthStart = new Date(
+              now.getFullYear(),
+              now.getMonth() - 1,
+              1
+            );
+            const lastMonthEnd = new Date(now.getFullYear(), now.getMonth(), 0);
+            return date >= lastMonthStart && date <= lastMonthEnd;
+          default:
+            return true;
+        }
+      };
+      filteredJobs = filteredJobs.filter((job: any) => filterByDate(job.date));
+    }
 
-    // Extract values from selected options and update state
-    const values = selectedOption.map((option: any) =>
-      whiteList.push({
-        id: option.value,
-        noteAcceptJob: "",
-        price: "",
-        jobStatus: "",
-      })
-    );
-    setSelectedValues(whiteList);
+    // if (selectedPayment && selectedPayment !== "all") {
+    //   filteredJobs = filteredJobs.filter(
+    //     (job) => job.payment_status === selectedPayment
+    //   );
+    // }
+
+    if (selectedProgress && selectedProgress !== "all") {
+      filteredJobs = filteredJobs.filter(
+        (job: any) => job.progress === selectedProgress
+      );
+    }
+
+    return filteredJobs;
   };
 
   return (
@@ -354,14 +353,27 @@ const TripsManagement = () => {
               <Card.Body>
                 <Row className="g-lg-2 g-4">
                   <Col sm={9} className="col-lg-auto">
+                    <div className="search-box">
+                      <input
+                        type="text"
+                        className="form-control search"
+                        placeholder="Search for something..."
+                        value={searchTerm}
+                        onChange={handleSearchChange}
+                      />
+                      <i className="ri-search-line search-icon"></i>
+                    </div>
+                  </Col>
+                  <Col sm={9} className="col-lg-auto">
                     <select
                       className="form-select text-muted"
                       data-choices
                       data-choices-search-false
                       name="choices-single-default"
                       id="idStatus"
+                      onChange={handleSelectPeriod}
                     >
-                      <option value="all">All</option>
+                      <option value="all">All Days</option>
                       <option value="Today">Today</option>
                       <option value="Yesterday">Yesterday</option>
                       <option value="Last 7 Days">Last 7 Days</option>
@@ -370,65 +382,32 @@ const TripsManagement = () => {
                       <option value="Last Month">Last Month</option>
                     </select>
                   </Col>
-                  <Col lg={2}>
-                    <Flatpickr
-                      className="form-control flatpickr-input"
-                      placeholder={selectedFromDate}
-                      options={{
-                        dateFormat: "d M, Y",
-                      }}
-                      defaultValue={selectedFromDate}
-                      onChange={handleFromDateChange}
-                    />
-                  </Col>
-                  <Col lg={2}>
-                    <Flatpickr
-                      className="form-control flatpickr-input"
-                      placeholder={selectedToDate}
-                      options={{
-                        dateFormat: "d M, Y",
-                      }}
-                      defaultValue={selectedToDate}
-                      onChange={handleToDateChange}
-                    />
+                  <Col sm={9} className="col-lg-auto">
+                    <select
+                      className="form-select text-muted"
+                      data-choices
+                      data-choices-search-false
+                      name="Progress"
+                      id="idProgress"
+                      onChange={handleSelectProgress}
+                    >
+                      <option value="all">All Progress</option>
+                      <option value="Accepted">Accepted</option>
+                      <option value="On Route">On route</option>
+                      <option value="On site">On site</option>
+                      <option value="Picked Up">Picked Up</option>
+                    </select>
                   </Col>
                 </Row>
               </Card.Body>
             </Card>
             <Card id="shipmentsList">
-              <Card.Header className="border-bottom-dashed">
-                <Row className="g-2">
-                  <Col lg={8} className="d-flex justify-content-center">
-                    <div className="search-box">
-                      <input
-                        type="text"
-                        className="form-control search"
-                        placeholder="Search for something..."
-                      />
-                      <i className="ri-search-line search-icon"></i>
-                    </div>
-                  </Col>
-                  <Col lg={2} className="d-flex justify-content-end">
-                    <div
-                      className="btn-group btn-group-sm mt-2"
-                      role="group"
-                      aria-label="Basic example"
-                    >
-                      <button type="button" className="btn btn-outline-dark">
-                        Excel
-                      </button>
-                      <button type="button" className="btn btn-outline-dark">
-                        PDF
-                      </button>
-                      <button type="button" className="btn btn-outline-dark">
-                        Print
-                      </button>
-                    </div>
-                  </Col>
-                </Row>
-              </Card.Header>
               <Card.Body>
-                <DataTable columns={columns} data={data} pagination />
+                <DataTable
+                  columns={columns}
+                  data={getFilteredJobs()}
+                  pagination
+                />
               </Card.Body>
             </Card>
           </Col>

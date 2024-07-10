@@ -21,6 +21,7 @@ import { vehicleTypeSlice } from "features/vehicleType/vehicleTypeSlice";
 import { luggageSlice } from "features/luggage/luggageSlice";
 import { journeySlice } from "features/journey/journeySlice";
 import { passengerAndLuggageSlice } from "features/PassengerAndLuggageLimits/passerngerAndLuggageSlice";
+import { employeeAttendanceSlice } from "features/attendance/attendanceSlice";
 
 export const store = configureStore({
   reducer: {
@@ -36,6 +37,7 @@ export const store = configureStore({
     [luggageSlice.reducerPath]: luggageSlice.reducer,
     [journeySlice.reducerPath]: journeySlice.reducer,
     [passengerAndLuggageSlice.reducerPath]: passengerAndLuggageSlice.reducer,
+    [employeeAttendanceSlice.reducerPath]: employeeAttendanceSlice.reducer,
     auth: authSlice,
     Layout: LayoutReducer,
     ForgetPassword: ForgetPasswordReducer,
@@ -55,7 +57,8 @@ export const store = configureStore({
       journeySlice.middleware,
       luggageSlice.middleware,
       vehicleTypeSlice.middleware,
-      passengerAndLuggageSlice.middleware
+      passengerAndLuggageSlice.middleware,
+      employeeAttendanceSlice.middleware
     ]);
   },
 });

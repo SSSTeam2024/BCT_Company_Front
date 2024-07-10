@@ -99,7 +99,7 @@ const MyCartDropdown = () => {
           type="button"
           className="btn btn-icon btn-topbar btn-ghost-dark rounded-circle arrow-none"
         >
-          <i className="bi bi-pencil-square "></i>
+          <i className="bi bi-pencil-square fs-17"></i>
           <span className="position-absolute topbar-badge cartitem-badge fs-10 translate-middle badge rounded-pill bg-info">
             {notesTotal}
           </span>

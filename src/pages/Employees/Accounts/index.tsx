@@ -25,14 +25,14 @@ import { RootState } from "../../../app/store"; // Import your RootState interfa
 import { selectCurrentUser } from "../../../features/account/authSlice";
 
 const Account = () => {
-  document.title = "Account | Company Administration";
+  document.title = "Accounts | Company Administration";
 
   const user = useSelector((state: RootState) => selectCurrentUser(state));
   const { data } = useFetchEmployeeByCompanyQuery({ idCompany: user?._id! });
-
+  console.log("data", data);
   // Type assertion to inform TypeScript about the shape of `data`
   const employees: Employee[] = (data as any)?.getEmployeesByIdCompany || [];
-  console.log(employees);
+
   const [deleteEmployee] = useDeleteEmployeeMutation();
 
   const swalWithBootstrapButtons = Swal.mixin({
@@ -274,7 +274,7 @@ const Account = () => {
               <div className="table-responsive table-card">
                 <TableContainer
                   columns={columns || []}
-                  data={employees || []}
+                  data={data || []}
                   // isGlobalFilter={false}
                   iscustomPageSize={false}
                   isBordered={false}

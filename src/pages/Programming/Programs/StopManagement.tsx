@@ -97,33 +97,24 @@ const StopsManagement = () => {
               let newAssignments = [];
               let total = 0;
 
-              for(let group of program.employees_groups){
-                total += group.employees.length;
-                for(let employee of group.employees){
-                  if(employee.stop_point !== null){
+              for (let group of program.employees_groups) {
+                total += group?.employees?.length;
+                for (let employee of group.employees) {
+                  if (employee.stop_point !== null) {
                     newAssignments.push({
                       employee: employee._id,
-                        stop: employee.stop_point,
-                      })
+                      stop: employee.stop_point,
+                    });
                   }
                 }
               }
               setTotalStudentsNumber(total);
-
-              console.log("Assigned employees",newAssignments);
-
               setAssignedPassengers(newAssignments);
-              console.log("totalStudentsNumber", total);
-              console.log("assignedPassengers.length", newAssignments.length);
-
-              
               if (newAssignments.length < total) {
-                console.log("hello");
                 setDisabledSubmit(true);
               } else {
                 setDisabledSubmit(false);
               }
-
             } else {
               console.error("No routes found in the directions result");
             }
@@ -148,14 +139,11 @@ const StopsManagement = () => {
   };
 
   const handleStopMarkerClick = (stop: any, index: any) => {
-    console.log("Clicked Stop", stop);
-    console.log("Clicked Stop", stop.address);
     setClickedMarkerIndex(index);
     setSelectedStop(stop.address);
   };
 
   const handleStartPointMarkerClick = () => {
-    console.log("Clicked orirgin", program.origin_point);
     setClickedMarkerIndex(-1);
     let origin = {
       coordinates: {
@@ -206,26 +194,26 @@ const StopsManagement = () => {
     );
     console.log("assignedPassengers assign", oldFilteredAssignments);
 
-    if ((oldFilteredAssignments.length + newAssignments.length) < totalStudentsNumber) {
+    if (
+      oldFilteredAssignments.length + newAssignments.length <
+      totalStudentsNumber
+    ) {
       setDisabledSubmit(true);
     } else {
       setDisabledSubmit(false);
     }
   };
 
-  
-
   const handleUnassignPassenger = (passenger: any) => {
     //  console.log("Selected unassign passenger", passenger);
     setAssignedPassengers((prevAssignments) =>
       prevAssignments.filter((a) => a.employee !== passenger._id)
     );
-    let newAssignments = assignedPassengers.filter((a: any) => a.employee !== passenger._id)
-
-    console.log(
-      "assignedPassengers unassign",
-      newAssignments
+    let newAssignments = assignedPassengers.filter(
+      (a: any) => a.employee !== passenger._id
     );
+
+    console.log("assignedPassengers unassign", newAssignments);
 
     if (newAssignments.length < totalStudentsNumber) {
       setDisabledSubmit(true);
@@ -601,13 +589,13 @@ const StopsManagement = () => {
             </Card.Body>
           </Card>
         </Col>
-     
+
         <Form
           onSubmit={onSubmitStudents}
           className="d-flex justify-content-end"
         >
           <Button
-          disabled={disabledSubmit}
+            disabled={disabledSubmit}
             variant="success"
             type="submit"
             className="w-sm"

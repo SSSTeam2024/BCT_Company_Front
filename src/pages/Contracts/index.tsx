@@ -1,11 +1,5 @@
 import React, { useState, useEffect, useMemo } from "react";
-import {
-  Button,
-  Card,
-  Col,
-  Container,
-  Row,
-} from "react-bootstrap";
+import { Button, Card, Col, Container, Row } from "react-bootstrap";
 import Breadcrumb from "Common/BreadCrumb";
 import { sellerGrid } from "Common/data";
 import { Link } from "react-router-dom";
@@ -19,7 +13,9 @@ const Contract = () => {
 
   const { data = [] } = useGetAllContractsQuery();
   const user = useSelector((state: RootState) => selectCurrentUser(state));
-  const companyContracts = data.filter((companyContracts)=> companyContracts.idCompany === user._id)
+  const companyContracts = data.filter(
+    (companyContracts) => companyContracts.idCompany === user._id
+  );
   // Pagination
   const [pagination, setPagination] = useState<boolean>(true);
   const [currentPage, setCurrentPage] = useState<any>(1);
@@ -89,7 +85,7 @@ const Contract = () => {
     <React.Fragment>
       <div className="page-content">
         <Container fluid={true}>
-          <Breadcrumb title="Contracts" pageTitle="Programming" />
+          <Breadcrumb title="Contracts" pageTitle="Suggested Routes" />
           <Row className="mb-4">
             <Col xxl={12}></Col>
             <Col xxl={6} md={10} className="mx-auto"></Col>
@@ -235,7 +231,7 @@ const Contract = () => {
                       </div>
                     </Row>
                     <div className="mt-4 hstack gap-2 d-flex justify-content-between">
-                    <Link to={`/contract/${item._id}`} state={item}>
+                      <Link to={`/contract/${item._id}`} state={item}>
                         <Button variant="soft-secondary" className="w-300 ">
                           View Details
                         </Button>

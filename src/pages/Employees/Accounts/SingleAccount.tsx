@@ -1,6 +1,6 @@
 import React from "react";
-import { Card, Col, Container, Nav, Row, Tab } from "react-bootstrap";
-import { Link, useLocation } from "react-router-dom";
+import { Card, Nav, Tab } from "react-bootstrap";
+import { useLocation } from "react-router-dom";
 import Profile from "./Profile";
 import Trips from "./Trips";
 import NonAttendance from "./NonAttendance";
@@ -8,7 +8,6 @@ import NonAttendance from "./NonAttendance";
 const SingleProfile = () => {
   document.title = "Profile | Company Administration";
   const singleAccount = useLocation();
-  console.log(singleAccount);
 
   return (
     <React.Fragment>

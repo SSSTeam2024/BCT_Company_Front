@@ -70,7 +70,7 @@ export const quoteSlice = createApi({
         }),
         providesTags: ["Quote"],
       }),
-      getAllQuotesByCompanyID: builder.query<Quote, string | void>({
+      getAllQuotesByCompanyID: builder.query<Quote[], string | void>({
         query: (_id) => ({
           url: `/getAllQuotesByCompanyID/${_id}`,
           method: "GET",
@@ -86,5 +86,4 @@ export const {
   useGetQuoteByIdQuery,
   useGetQuoteByIdScheduleQuery,
   useGetAllQuotesByCompanyIDQuery
-
 } = quoteSlice;

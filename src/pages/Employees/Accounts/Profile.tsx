@@ -3,9 +3,11 @@ import { Button, Card, Col, Row, Table, Modal } from "react-bootstrap";
 import { Document, Page } from "react-pdf";
 import { pdfjs } from "react-pdf";
 import "@react-pdf-viewer/core/lib/styles/index.css";
+import { useGetAttendanceByIdEmployeeMutation } from "features/attendance/attendanceSlice";
 
 const Profile = (props: any) => {
   const {
+    _id,
     firstName,
     lastName,
     address,
@@ -37,6 +39,13 @@ const Profile = (props: any) => {
   const onDocumentLoadSuccess = ({ numPages }: { numPages: number }) => {
     setNumPages(numPages);
   };
+
+  const [getAttendanceByIdEmployee, { data, error, isLoading }] =
+    useGetAttendanceByIdEmployeeMutation();
+
+  React.useEffect(() => {
+    getAttendanceByIdEmployee({ id_employee: _id });
+  }, [props, getAttendanceByIdEmployee]);
 
   return (
     <React.Fragment>
@@ -131,7 +140,7 @@ const Profile = (props: any) => {
                 <tbody>
                   <tr>
                     <td className="fw-bold">Total Trips:</td>
-                    <td className="fw-medium">75 trip</td>
+                    <td className="fw-medium">{data?.length!} trips</td>
                   </tr>
                 </tbody>
               </Table>
