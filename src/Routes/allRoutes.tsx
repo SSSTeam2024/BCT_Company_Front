@@ -2,7 +2,6 @@ import { Navigate } from "react-router-dom";
 
 import Dashboard from "pages/Dashboard";
 
-
 import Categories from "pages/Products/Categories";
 import SubCategories from "pages/Products/SubCategories";
 
@@ -93,14 +92,14 @@ import Login from "pages/Authentication/Login";
 import Contract from "pages/Contracts";
 import StopsManagement from "pages/Programming/Programs/StopManagement";
 import ProgramGroups from "pages/Programming/Programs/ProgramGroups";
-
-
+import RequestFeature from "pages/Help/RequestFeature";
+import RequestedFeatures from "pages/Help/RequestFeature/RequestedFeatures";
 
 const authProtectedRoutes = [
   { path: "/dashboard", component: <Dashboard /> },
 
   //? Tracking
- 
+
   { path: "/delays&changes", component: <Shipments /> },
   { path: "/tracking", component: <GoogleMap /> },
 
@@ -111,19 +110,20 @@ const authProtectedRoutes = [
   { path: "/trip-management", component: <TripsManagement /> },
   { path: "/Scheduling", component: <CurrencyRates /> },
 
-  
-  { path: "/programming/addProgram", component: < AddProgramm/> },
-  { path: "/programming/list-of-programs", component: < ProgramList/> },
-  { path: "/programming/list-of-programs/programDetail", component: < ProgramDetail/> },
-  { path: "/program/:name", component: < ProgramClone/> },
-  { path: "/program-details/:name", component: < ProgramDetails/> },
-  { path: "/stopsmanagement", component: < StopsManagement/> },
-  { path: "/programgroups", component: < ProgramGroups/> },
+  { path: "/programming/addProgram", component: <AddProgramm /> },
+  { path: "/programming/list-of-programs", component: <ProgramList /> },
+  {
+    path: "/programming/list-of-programs/programDetail",
+    component: <ProgramDetail />,
+  },
+  { path: "/program/:name", component: <ProgramClone /> },
+  { path: "/program-details/:name", component: <ProgramDetails /> },
+  { path: "/stopsmanagement", component: <StopsManagement /> },
+  { path: "/programgroups", component: <ProgramGroups /> },
 
   //? Payment
   { path: "/payment-employee", component: <EmployeePayment /> },
   { path: "/payment-management", component: <SellersListView /> },
-  
 
   //? Corporate
   { path: "/schools", component: <Categories /> },
@@ -135,38 +135,36 @@ const authProtectedRoutes = [
   //? Feedback & Claims
   { path: "/feedback&claims", component: <ReviewRating /> },
 
-
   //? Reporting Management
   { path: "/reporting", component: <Reporting /> },
 
   //? Email Templates
-  
 
   //? Employee
   { path: "/employee/groups/new-group", component: <AddNewGroup /> },
   { path: "/employee/groups", component: <Group /> },
   { path: "/employees/account", component: <Account /> },
-  { path: "/employees/account/new-account", component: <AddNewAccount/> },
+  { path: "/employees/account/new-account", component: <AddNewAccount /> },
   { path: "/emloyee-attendance", component: <Attendances /> },
   { path: "/single-account", component: <SingleProfile /> },
   { path: "/employees/myaccount", component: <MyAccount /> },
 
-//? Corporate Transport ==> Programming
-{ path: "/scheduling", component: <InvoiceDetails /> },
-{ path: "/offers", component: <CreateInvoice /> },
-{ path: "/programming/station", component: <Station/> },
-{ path: "/trip-models", component: <SellersGridView /> },
- //? Group page
- { path: "/groups", component: <Groups /> },
+  //? Corporate Transport ==> Programming
+  { path: "/scheduling", component: <InvoiceDetails /> },
+  { path: "/offers", component: <CreateInvoice /> },
+  { path: "/programming/station", component: <Station /> },
+  { path: "/trip-models", component: <SellersGridView /> },
+  //? Group page
+  { path: "/groups", component: <Groups /> },
 
-   //? Claims
+  //? Claims
 
-{ path: "/complains", component: <Claims /> },
-{ path: "/claim-detail", component: <ClaimDetails/> },
-{ path: "/complains/archive", component: <ArchivedComplains /> },
- //? Contract
- { path: "/contract", component: <Contract /> },
-{ path: "/contract/:id", component: <ContractDetails/> },
+  { path: "/complains", component: <Claims /> },
+  { path: "/claim-detail", component: <ClaimDetails /> },
+  { path: "/complains/archive", component: <ArchivedComplains /> },
+  //? Contract
+  { path: "/contract", component: <Contract /> },
+  { path: "/contract/:id", component: <ContractDetails /> },
   // this route should be at the end of all other routes
   // eslint-disable-next-line react/display-name
   { path: "/", exact: true, component: <Navigate to="/tracking" /> },
@@ -174,11 +172,9 @@ const authProtectedRoutes = [
   { path: "/user-profile", component: <UserProfile /> },
   // AuthenticationInner
 
-
-
-
-
-
+  //? Request Feature
+  { path: "/new-request-feature", component: <RequestFeature /> },
+  { path: "/requested-features", component: <RequestedFeatures /> },
 ];
 
 const publicRoutes = [
@@ -193,8 +189,5 @@ const publicRoutes = [
   { path: "/auth-500", component: <Error500 /> },
   { path: "/coming-soon", component: <ComingSoon /> },
 ];
-
-
-
 
 export { publicRoutes, authProtectedRoutes };

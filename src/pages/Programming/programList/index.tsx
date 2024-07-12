@@ -44,12 +44,10 @@ const ProgramList = () => {
   const [modal_Destination, setmodal_Destination] = useState<boolean>(false);
   const [modal_Action, setmodal_Action] = useState<boolean>(false);
   const { data = [] } = useFetchProgrammsQuery();
-  console.log("data", data);
   const companyPrograms = data.filter(
     (programForCompany: any) =>
       programForCompany?.company_id?._id! === user?._id!
   );
-  console.log("program", companyPrograms);
   function tog_Pickup() {
     setmodal_Pickup(!modal_Pickup);
   }

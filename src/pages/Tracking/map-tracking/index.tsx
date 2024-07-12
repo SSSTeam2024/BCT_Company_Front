@@ -145,10 +145,6 @@ const Maptracking = (props: any) => {
                 <span className="fw-medium">{markers.length}</span>
                 <span className="fw-bold">Current Trips</span>
               </Col>
-              <Col lg={3} className="hstack gap-1">
-                <span className="fw-medium">{trips_with_delays.length}</span>
-                <span className="fw-bold">With Delay</span>
-              </Col>
             </Row>
           </Card>
           <Row>
@@ -183,7 +179,11 @@ const Maptracking = (props: any) => {
                                 alt=""
                                 style={{ width: "25px" }}
                               />
-                              <span> {marker.details.details.driver}</span>
+                              <span>
+                                {" "}
+                                {marker.details.details.driver.firstname}{" "}
+                                {marker.details.details.driver.surname}
+                              </span>
                               <br />
 
                               <span>

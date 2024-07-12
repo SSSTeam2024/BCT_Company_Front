@@ -633,7 +633,7 @@ const AddNewAccount = () => {
                               <Col lg={3}>
                                 <div className="mb-3">
                                   <label htmlFor="login" className="form-label">
-                                    Employee ID
+                                    Employee Login
                                   </label>
                                   <Form.Control
                                     type="text"
@@ -681,119 +681,6 @@ const AddNewAccount = () => {
                           </Card.Body>
                         </Col>
 
-                        <Col lg={12}>
-                          <Card.Header>
-                            <div className="d-flex">
-                              <div className="flex-shrink-0 me-3">
-                                <div className="avatar-sm">
-                                  <div className="avatar-title rounded-circle bg-light text-primary fs-20">
-                                    <i className="bi bi-truck-front"></i>
-                                  </div>
-                                </div>
-                              </div>
-                              <div className="flex-grow-1">
-                                <h5 className="card-title">
-                                  Transportation-Specific Information
-                                </h5>
-                              </div>
-                            </div>
-                          </Card.Header>
-                          <Card.Body>
-                            <Row>
-                              {/* <Col lg={3}>
-                                <div className="mb-3">
-                                  <label
-                                    htmlFor="station"
-                                    className="form-label"
-                                  >
-                                    Station
-                                  </label>
-                                  <select
-                                    className="form-select text-muted"
-                                    name="choices-single-default"
-                                    id="station"
-                                    onChange={selectChangeStation}
-                                  // required
-                                  >
-                                    <option value="Station 1">Station 1</option>
-                                    <option value="Station 2">Station 2</option>
-                                    <option value="Station 3">Station 3</option>
-                                    <option value="Station 4">Station 4</option>
-                                  </select>
-                                </div>
-                              </Col> */}
-                              {/* <Col lg={2}>
-                                <div className="mb-3">
-                                  <label htmlFor="group" className="form-label">
-                                    Group
-                                  </label>
-                                  <select
-                                    className="form-select text-muted"
-                                    name="choices-single-default"
-                                    id="group"
-                                    onChange={selectChangeGroup}
-                                  >
-                                    <option value="Group">Group</option>
-                                    {AllGroups.map((groups) => (
-                                      <option
-                                        value={groups?._id!}
-                                        key={groups?._id!}
-                                      >
-                                        {groups?.groupName}
-                                      </option>
-                                    ))}
-                                  </select>
-                                </div>
-                              </Col> */}
-                              {/* <Col lg={2}>
-                                <div className="mb-3">
-                                  <label
-                                    htmlFor="statusSelect"
-                                    className="form-label"
-                                  >
-                                    Category
-                                  </label>
-                                  <select
-                                    className="form-select text-muted"
-                                    name="choices-single-default"
-                                    id="statusSelect"
-                                  // required
-                                  >
-                                    <option value="">Category</option>
-                                    <option value="Only Car">Only Car</option>
-                                    <option value="Only Bus">Only Bus</option>
-                                    <option value="Both">
-                                      Both
-                                    </option>
-                                  </select>
-                                </div>
-                              </Col> */}
-                              {/* <Col lg={3}>
-                                <div className="mb-3">
-                                  <label
-                                    htmlFor="statusSelect"
-                                    className="form-label"
-                                  >
-                                    Contract Type
-                                  </label>
-                                  <select
-                                    className="form-select text-muted"
-                                    name="choices-single-default"
-                                    id="statusSelect"
-                                  // required
-                                  >
-                                    <option value="">Contract</option>
-                                    <option value="CDI">CDI</option>
-                                    <option value="CDD">CDD</option>
-                                    <option value="Part Time">
-                                      Part Time
-                                    </option>
-                                  </select>
-                                </div>
-                              </Col> */}
-                            </Row>
-                          </Card.Body>
-                        </Col>
                         {/* <Col lg={6}>
                             <div className="mb-3">
                               <label

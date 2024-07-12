@@ -1,14 +1,5 @@
 import React, { useEffect, useState } from "react";
-import {
-  Container,
-  Row,
-  Card,
-  Col,
-  Tab,
-  Nav,
-  Form,
-  Button,
-} from "react-bootstrap";
+import { Row, Card, Col, Tab, Form, Button } from "react-bootstrap";
 import { useLocation } from "react-router-dom";
 
 import Select from "react-select";
@@ -16,11 +7,9 @@ import Select from "react-select";
 import {
   DirectionsRenderer,
   GoogleMap,
-  InfoWindow,
   Marker,
   useJsApiLoader,
 } from "@react-google-maps/api";
-// import SelectionStudentStops from "./SelectionStudentStops";
 import "./SelectionStudentStop.css";
 
 import start_clicked from "../../../assets/images/start_clicked.png";
@@ -33,7 +22,7 @@ import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 
 const StopsManagement = () => {
-  document.title = "New Jobs | Affiliate Administration";
+  document.title = "Stops Management | Company Administration";
 
   const [activeVerticalTab, setactiveVerticalTab] = useState<number>(0);
   const navigate = useNavigate();

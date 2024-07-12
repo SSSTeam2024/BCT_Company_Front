@@ -11,6 +11,7 @@ const Navdata = () => {
   const [isReportingManagement, setIsReportingManagement] = useState(false);
   const [isEmailTemplates, setIsEmailTemplates] = useState(false);
   const [isEmployees, setIsEmployees] = useState(false);
+  const [isHelp, setIsHelp] = useState(false);
 
   // Multi Level
   const [isLevel1, setIsLevel1] = useState(false);
@@ -60,6 +61,9 @@ const Navdata = () => {
     if (iscurrentState !== "Employees") {
       setIsEmployees(false);
     }
+    if (iscurrentState !== "Help") {
+      setIsHelp(false);
+    }
   }, [
     iscurrentState,
     isEmailTemplates,
@@ -70,6 +74,7 @@ const Navdata = () => {
     isFeedbackClaims,
     isReportingManagement,
     isEmployees,
+    isHelp,
   ]);
 
   const menuItems: any = [
@@ -278,6 +283,42 @@ const Navdata = () => {
           link: "/complains/archive",
           icon: "bi bi-chat-square-quote",
           parentId: "Payments",
+        },
+      ],
+    },
+    {
+      id: "Help",
+      label: "Help",
+      icon: "bi bi-patch-question",
+      link: "/#",
+      click: function (e: any) {
+        e.preventDefault();
+        setIsHelp(!isHelp);
+        setIscurrentState("Help");
+        updateIconSidebar(e);
+      },
+      stateVariables: isHelp,
+      subItems: [
+        {
+          id: "User Manual",
+          label: "User Manual",
+          link: "/user-manual",
+          icon: "mdi mdi-book-open-page-variant",
+          parentId: "Help",
+        },
+        {
+          id: "Request Feature",
+          label: "Request Feature",
+          link: "/requested-features",
+          icon: "mdi mdi-playlist-plus",
+          parentId: "Help",
+        },
+        {
+          id: "ReportError",
+          label: "Report an Error",
+          link: "/report-error",
+          icon: "mdi mdi-bug",
+          parentId: "Help",
         },
       ],
     },
