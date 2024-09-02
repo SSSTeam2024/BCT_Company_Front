@@ -75,7 +75,7 @@ export const employeeSlice = createApi({
       updateEmployee: builder.mutation<void, Employee>({
         query: ({ _id, ...rest }) => ({
           url: `/updateEmployee/${_id}`,
-          method: "PUT",
+          method: "PATCH",
           body: rest,
         }),
         invalidatesTags: ["Employee"],

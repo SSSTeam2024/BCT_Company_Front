@@ -94,6 +94,10 @@ import StopsManagement from "pages/Programming/Programs/StopManagement";
 import ProgramGroups from "pages/Programming/Programs/ProgramGroups";
 import RequestFeature from "pages/Help/RequestFeature";
 import RequestedFeatures from "pages/Help/RequestFeature/RequestedFeatures";
+import EditAccount from "pages/Employees/Accounts/EditAccount";
+import EditProfile from "pages/Authentication/EditProfile";
+import ErrorReported from "pages/Help/ReportError/ErrorReported";
+import ReportError from "pages/Help/ReportError";
 
 const authProtectedRoutes = [
   { path: "/dashboard", component: <Dashboard /> },
@@ -148,6 +152,7 @@ const authProtectedRoutes = [
   { path: "/emloyee-attendance", component: <Attendances /> },
   { path: "/single-account", component: <SingleProfile /> },
   { path: "/employees/myaccount", component: <MyAccount /> },
+  { path: "/edit-account", component: <EditAccount /> },
 
   //? Corporate Transport ==> Programming
   { path: "/scheduling", component: <InvoiceDetails /> },
@@ -157,8 +162,9 @@ const authProtectedRoutes = [
   //? Group page
   { path: "/groups", component: <Groups /> },
 
-  //? Claims
+  { path: "/edit-profile", component: <EditProfile /> },
 
+  //? Claims
   { path: "/complains", component: <Claims /> },
   { path: "/claim-detail", component: <ClaimDetails /> },
   { path: "/complains/archive", component: <ArchivedComplains /> },
@@ -175,6 +181,8 @@ const authProtectedRoutes = [
   //? Request Feature
   { path: "/new-request-feature", component: <RequestFeature /> },
   { path: "/requested-features", component: <RequestedFeatures /> },
+  { path: "/new-error-report", component: <ReportError /> },
+  { path: "/reported-errors", component: <ErrorReported /> },
 ];
 
 const publicRoutes = [

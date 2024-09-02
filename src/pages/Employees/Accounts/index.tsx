@@ -190,8 +190,9 @@ const Account = () => {
               </li>
               <li>
                 <Link
-                  to="#"
+                  to="/edit-account"
                   className="badge bg-success-subtle text-success edit-item-btn"
+                  state={cellProps}
                 >
                   <i
                     className="ph ph-pencil-line"
@@ -243,7 +244,7 @@ const Account = () => {
     <React.Fragment>
       <div className="page-content">
         <Container fluid={true}>
-          <Breadcrumb title="Account" pageTitle="Employees" />
+          <Breadcrumb title="Accounts" pageTitle="Employees" />
           <Card id="shipmentsList">
             <Card.Header className="border-bottom-dashed">
               <Row className="align-items-center g-3">

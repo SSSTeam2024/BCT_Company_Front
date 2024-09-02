@@ -24,8 +24,6 @@ export interface UserResponse {
   };
 }
 export interface Account {
-  accessToken: string,
-  company: {
     _id?: string;
     name: string,
     address: string,
@@ -43,7 +41,11 @@ export interface Account {
     logo_file: string,
     legal_file: string,
     api_token: string
-};}
+    logoBase64String: string,
+    logoExtension: string,
+    legel_card_base64_string: string,
+    legal_card_extension: string,
+};
 
 export interface LoginRequest {
   login: string;
@@ -73,27 +75,20 @@ export const accountSlice = createApi({
           body: credentials,
         }),
       }),
-    //   updateAccount: builder.mutation<void, Account>({
-    //     query: ({ idCompte, ...rest }) => ({
-    //       url: `editUser/${idCompte}`,
-    //       method: "PATCH",
-    //       body: rest,
-    //     }),
-    //     invalidatesTags: ["Account"],
-    //   }),
-    //   deleteCompte: builder.mutation<void, number>({
-    //     query: (idCompte) => ({
-    //       url: `removeUser/${idCompte}`,
-    //       method: "DELETE",
-    //     }),
-    //     invalidatesTags: ["Account"],
-    //   }),
+      updateAccount: builder.mutation<void, Account>({
+        query: ({ _id, ...rest }) => ({
+          url: `/updateCompany/${_id}`,
+          method: "PATCH",
+          body: rest,
+        }),
+        invalidatesTags: ["Account"],
+      }),
+   
     };
   },
 });
 
 export const {
-//   useUpdateAccountMutation,
+  useUpdateAccountMutation,
   useLoginMutation,
-//   useDeleteCompteMutation,
 } = accountSlice;

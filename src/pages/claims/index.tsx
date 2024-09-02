@@ -556,7 +556,7 @@ const Claims = () => {
     <React.Fragment>
       <div className="page-content">
         <Container fluid={true}>
-          <Breadcrumb title="Complains" pageTitle="Feedback&Complains" />
+          <Breadcrumb title="Complains" pageTitle="Dashboard" />
           <Row>
             <Card>
               <Card.Body>
@@ -827,7 +827,7 @@ const Claims = () => {
                           </Col>
                           <Col lg={4}>
                             <p className="justify-content-end">
-                              {complaint.createdAt}
+                              {complaint.createdAt.slice(0, 10)}
                             </p>
                           </Col>
                         </Row>

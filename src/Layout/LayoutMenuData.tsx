@@ -308,15 +308,15 @@ const Navdata = () => {
         },
         {
           id: "Request Feature",
-          label: "Request Feature",
+          label: "Request Features",
           link: "/requested-features",
           icon: "mdi mdi-playlist-plus",
           parentId: "Help",
         },
         {
           id: "ReportError",
-          label: "Report an Error",
-          link: "/report-error",
+          label: "Reported Errors",
+          link: "/reported-errors",
           icon: "mdi mdi-bug",
           parentId: "Help",
         },

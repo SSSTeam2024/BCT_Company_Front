@@ -5,23 +5,27 @@ import type { RootState } from "../../app/store";
 
 type AuthState = {
     company: {
-        _id?: string;
-        name: string,
-        address: string,
-        email: string,
-        phone: string,
-        activity: string,
-        service_date: string,
-        statusCompany: string,
-        account_name: string,
-        sort_code: string,
-        account_number: string,
-        bank_name: string,
-        login: string,
-        password: string,
-        logo_file: string,
-        legal_file: string,
-        api_token: string
+      _id?: string;
+      name: string;
+      address: string;
+      email: string;
+      phone: string;
+      activity: string;
+      service_date: string;
+      statusCompany: string;
+      account_name: string;
+      sort_code: string;
+      account_number: string;
+      bank_name: string;
+      login: string;
+      password: string;
+      logoBase64String?: string;
+      logoExtension?: string;
+      logo_file: string;
+      legel_card_base64_string?: string;
+      legal_card_extension?: string;
+      legal_file: string;
+      api_token?: string;
       };
 };
 
@@ -44,7 +48,11 @@ const slice = createSlice({
     password: "",
     logo_file:"" ,
     legal_file: "",
-    api_token:"" 
+    api_token:"",
+    logoBase64String: "",
+    logoExtension: "",
+    legel_card_base64_string: "",
+    legal_card_extension: "",
   } } as AuthState,
   reducers: {
     setCredentials: (
